@@ -19,7 +19,7 @@ namespace Shamsi;
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  * @package Calendar
- * @subpackage JalaliDate
+ * @subpackage 
  * @author Keyhan Sedaghat<keyhansedaghat@netscape.net>
  * @author Amin Saeedi<amin.w3dev@gmail.com>
  * @copyright 1371-1390 (1991-2011)
@@ -50,7 +50,7 @@ namespace Shamsi;
  *
  * In general only the following methods should be called:
  * mktime(year, month, day, hour, minute, second) to create time stamp for a given date.
- * date(format, [time stamp], [decorate]) to build readable output from time stamp.
+ * format(format, [time stamp], [decorate]) to build readable output from time stamp.
  */
 class Date
 {
@@ -214,9 +214,9 @@ class Date
 	private $_timezoneOffset = 0;
 
 	/**
-	 * JalaliDate::__construct()
+     * returns the week of the year
 	 * 
-	 * @param integer $year --Optional timestamp or hour value
+	 * @param integer $year --Optional timestamp
 	 * @param integer $month --Optional
 	 * @param integer $day --Optional
 	 * @param integer $hour --Optional
@@ -243,8 +243,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::ParsiNumbers()
-	 *
 	 * converts digits to Persian traditional font face and
 	 * corrects the no-width space in words
 	 * use the function on the returned value in the source code
@@ -261,8 +259,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::dayOfYear()
-	 *
 	 * get value of the day in the year
 	 *  
 	 * @access private
@@ -274,8 +270,7 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::weekOfYear()
-	 * 
+     * returns the week of the year
 	 * @access private
 	 * @return int
 	 */
@@ -287,8 +282,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::calcRasad()
-	 * 
 	 * calculates the years from reference Observation year
 	 * 
 	 * @param int $yearValue
@@ -303,8 +296,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::isLeap()
-	 * 
 	 * Checks the specified year for a leap year
 	 * The return value is the number of the leap year (1 - 31)in one cycle
 	 * for leap years and false for normal years
@@ -323,8 +314,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::dayOfWeek()
-	 * 
 	 * returns weekday of the specified day of the year
 	 * 
 	 * @param int $yearValue
@@ -356,8 +345,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::dayName()
-	 * 
 	 * returns names of the weekday
 	 * 
 	 * @param int $dayValue
@@ -367,14 +354,12 @@ class Date
 	private function dayName($dayValue) 
     {
 		$weekAlpha = array(
-			'شنبه', 'يکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'آدينه'
+         'شنبه', 'يکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'آدينه'
 		);
 		return $weekAlpha [$dayValue];
 	}
 
 	/**
-	 * JalaliDate::dayShortName()
-	 * 
 	 * returns abbreviated names of the weekday
 	 * 
 	 * @param int $dayValue
@@ -390,8 +375,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::monthName()
-	 * 
 	 * returns names of the month
 	 * 
 	 * @param int $monthValue
@@ -411,8 +394,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::monthShortName()
-	 * 
 	 * returns abbreviated names of the month
 	 * 
 	 * @param int $monthValue
@@ -431,8 +412,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::monthDayString()
-	 * 
 	 * returns long text day of the month
 	 * 
 	 * @param int $monthDayValue
@@ -452,8 +431,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::_date()
-	 * 
 	 * sets the full date data Y;M;D;H;I;S in various class attributes
 	 * 
 	 * @access private
@@ -494,8 +471,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::zone()
-	 *
 	 * set all properties related to time zone
 	 *
 	 * @access private
@@ -511,8 +486,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::date()
-	 *
 	 * this is a clone of the internal php function date()
 	 * with a few exceptions in the acceptable parameters
 	 *
@@ -569,8 +542,11 @@ class Date
 	 * @access public
 	 * @return mixed
 	 */
-	public function date($format, $timestamp = 0, $decorate = true) 
+	public function format($format, $timestamp = 0, $decorate = true) 
     {
+        if ($timestamp) {
+            $this->_timestamp = $timestamp;
+        }
 		$this->_date();
 		$format = str_replace("a", ($this->_hour <= 12 ? "ق.ظ" : "ب.ظ"), $format);
 		$format = str_replace("A", ($this->_hour <= 12 ? "ق.ظ" : "ب.ظ"), $format);
@@ -638,8 +614,6 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::mktime()
-	 * 
 	 * creates timestamp depending on the Persian time parameters
 	 * 
 	 * @access private 
@@ -673,15 +647,14 @@ class Date
 	}
 
 	/**
-	 * JalaliDate::timestamp()
-	 * 
 	 * returns current timestamp of the object
 	 * this time stamp is equivalent to system timestamp; for current time
 	 *
 	 * @access public 
 	 * @return int
 	 */
-	public function timestamp() {
+	public function getTimestamp() 
+    {
 		return $this->_timestamp;
 	}
 }
@@ -689,7 +662,7 @@ class Date
 function date($format, $timestamp=0, $decorate=true)
 {
    $jalali = new Date();
-   return $jalali->date($format, $timestamp, $decorate); 
+   return $jalali->format($format, $timestamp, $decorate); 
 }
 
 function mktime($year, $month, $day, $hour=0, $minute=0, $second=0)
