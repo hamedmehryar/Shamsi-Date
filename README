@@ -11,7 +11,7 @@ Constructing the class
 	$jDate = new \Shamsi\Date( 1383, 12, 30, 13, 45, 25 ) ;
 
 Calling class methods:
-1. $jDate->date( FORMAT ) ; //syntax of FORMAT is same as php.date() syntax.
+1. $jDate->format( FORMAT ) ; //syntax of FORMAT is same as php.date() syntax.
 	[see: hhtp://www.php.net/manual/en/function.date.php].
 2. $jDate->timestamp( ) ; //returns the used (internal) timestamp.
 	This is the same value returned from php.time() for the equivalent Julian date.
@@ -23,4 +23,4 @@ Function call:
 
 In general only the following methods should be called:
 	mktime(year, month, day, hour, minute, second) to create time stamp for a given date.
-	date(format, [,int timestamp [,boolean decorate]]) to build readable output from time stamp.
+	format(format, [,int timestamp [,boolean decorate]]) to build readable output from time stamp.
