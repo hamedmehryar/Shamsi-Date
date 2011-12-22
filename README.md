@@ -4,16 +4,13 @@ This package provides an exact scientific approach to create Jalali(Shamsi) cale
 ###How to instantiate the class
 The main class can be instantiated in three ways:
 
-Without any parameters: 
     $date = new \Shamsi\Date();
-With a timestamp:
-    $date = new \Shamsi\Date(1324499150);
-With year, month, day, hour, minute and second, the same format used by php [mktime()](http://www.php.net/manual/en/function.mktime.php):
-    $date = new \Shamsi\Date(1383, 12, 30, 13, 45, 25);
+    $date = new \Shamsi\Date(1324499150);   //with timestamp
+    $date = new \Shamsi\Date(1383, 12, 30, 13, 45, 25); //with year, month, day, hour, minute and second parameters
 
 ###Public methods
     
-    string format(string format[, int timestamp [, boolean decorate]])  //set decorate to true in order to use Persian numbers/strings
+    string format(string format[, int timestamp [, boolean decorate]])  //use decorate to use Persian numbers/strings
     int mktime(int year, int month, int day[, int hour[, int minute[, int second]]])
     int getTimestamp()
 
