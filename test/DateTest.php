@@ -1,6 +1,7 @@
 <?php
-require '../Date.php';
+require '../Shamsi/Date.php';
 
+date_default_timezone_set('Asia/Tehran'); 
 class DateTest extends PHPUnit_Framework_TestCase
 {
     public function testDateFunc()
@@ -20,6 +21,5 @@ class DateTest extends PHPUnit_Framework_TestCase
     {
         $timestamp = \strtotime('+1 week');
         $result = \Shamsi\date('l S F Y H:i:s', $timestamp); 
-        var_dump($result);
     }
 }
